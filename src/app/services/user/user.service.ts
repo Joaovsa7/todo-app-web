@@ -9,16 +9,18 @@ interface loginData {
     password: string;
 }
 
+interface user {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    createdAt?: string,
+    status?: boolean,
+    _id?: string,
+}
+
 interface userResponse {
-    user: {
-        firstName: string,
-        lastName: string,
-        email: string,
-        password: string,
-        createdAt: string,
-        status: boolean,
-        _id: string,
-    },
+    user: user,
     token: string,
     auth: boolean;
     error: string,
@@ -40,10 +42,25 @@ export class UserService {
             }),
         };
 
+        const endpoint: string = `${this.API_URL}/user/login`;
+
         return <Observable<userResponse>>this.http
-            .post(`${this.API_URL}/user/login`, {
+            .post(endpoint, {
                 user: userData
             }, httpOptions)
             .pipe(take(1));
     }
+
+    doRegister(userData: user): Observable<userResponse> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-type': 'application/json',
+            }),
+        };
+        const endpoint: string = `${this.API_URL}/user/register`;
+
+        return <Observable<userResponse>>this.http.post(endpoint, {
+            user: userData
+        }, httpOptions);
+    };
 }
