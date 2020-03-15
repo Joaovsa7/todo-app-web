@@ -1,20 +1,53 @@
 <div id="login-container">
     <div id="box">
-        <h1 class="mat-headline">Todo web application.</h1>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <mat-form-field appearance="legacy">
+        <h1 class="mat-headline" aria-label="Todo web application">Todo web application.</h1>
+        <form aria-label="Login form" *ngIf="isLoginScreen" [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field appearance="legacy" aria-label="Email input field">
                 <mat-label matInput>Email</mat-label>
-                <input matInput type="text" placeholder="google@gmail.com" formControlName="email" />
-                <mat-hint>Your email.</mat-hint>
+                <input matInput type="text" aria-label="Type your email here" placeholder="google@gmail.com"
+                    formControlName="email" />
+                <mat-hint aria-label="your email">Your email.</mat-hint>
             </mat-form-field>
-            <mat-form-field appearance="legacy">
+            <mat-form-field appearance="legacy" aria-label="Password input field">
                 <mat-label matInput>Password</mat-label>
-                <input matInput type="password" placeholder="********" formControlName="password" />
+                <input matInput type="password" aria-label="Type your password here" placeholder="********"
+                    formControlName="password" />
                 <mat-hint>Your password.</mat-hint>
             </mat-form-field>
             <div class="submit-container">
-                <button mat-raised-button color="primary">{{ loading ? 'Loading...' : 'Sign in' }}</button>
-                <a href="">Sign up</a>
+                <button aria-label="Log in" mat-raised-button
+                    color="primary">{{ loading ? 'Loading...' : 'Sign in' }}</button>
+                <a (click)="changeScreen()" aria-label="Sign up">Sign up</a>
+            </div>
+        </form>
+        <form aria-label="Register form" *ngIf="!isLoginScreen" [formGroup]="registerForm" (ngSubmit)="register()">
+            <mat-form-field appearance="legacy" aria-label="First name input field">
+                <mat-label matInput>First name</mat-label>
+                <input matInput type="text" placeholder="John" aria-label="type your first name here"
+                    formControlName="firstName" />
+                <mat-hint>Your first name</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" aria-label="Last name input field">
+                <mat-label matInput>Last Name</mat-label>
+                <input matInput type="text" placeholder="Doe" aria-label="type your last name here"
+                    formControlName="lastName" />
+                <mat-hint>Your last Name.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" aria-label="Email input field">
+                <mat-label matInput>Email</mat-label>
+                <input matInput type="text" placeholder="google@gmail.com" aria-label="type your email here"
+                    formControlName="email" />
+                <mat-hint>Your email.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" aria-label="Password input field">
+                <mat-label matInput>Password</mat-label>
+                <input matInput type="password" placeholder="********" aria-label="type your password here"
+                    formControlName="password" />
+                <mat-hint>Your password.</mat-hint>
+            </mat-form-field>
+            <div class="submit-container">
+                <button mat-raised-button color="primary">{{ loading ? 'Loading...' : 'Sign up' }}</button>
+                <a (click)="changeScreen()" aria-label="Back to login">Back to login</a>
             </div>
         </form>
     </div>
