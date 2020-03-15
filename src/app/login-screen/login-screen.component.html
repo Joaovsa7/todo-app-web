@@ -1,0 +1,21 @@
+<div id="login-container">
+    <div id="box">
+        <h1 class="mat-headline">Todo web application.</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="legacy">
+                <mat-label matInput>Email</mat-label>
+                <input matInput type="text" placeholder="google@gmail.com" formControlName="email" />
+                <mat-hint>Your email.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label matInput>Password</mat-label>
+                <input matInput type="password" placeholder="********" formControlName="password" />
+                <mat-hint>Your password.</mat-hint>
+            </mat-form-field>
+            <div class="submit-container">
+                <button mat-raised-button color="primary">{{ loading ? 'Loading...' : 'Sign in' }}</button>
+                <a href="">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
